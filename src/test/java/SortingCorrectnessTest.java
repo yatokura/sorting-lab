@@ -1,16 +1,15 @@
 import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.MethodSource;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class SortingCorrectnessTest {
     String[] sorters = new String[0];
-//    @ParameterizedTest
+
+    //    @ParameterizedTest
 //    @MethodSource("sorters")
 // список всех сортировок
     @Test
@@ -28,7 +27,11 @@ public class SortingCorrectnessTest {
     }
 
     @Test
-    void checkIfSortDontLosingAnything(){
-
+    void checkIfSortDontLosingAnything() {
+        int[] data = {5, -2, 9, 3};
+        long sumBefore = Arrays.stream(data).sum();
+        new BubbleSort().sort(data);
+        assertEquals(sumBefore, Arrays.stream(data).sum());   // ничего не потерялось
+        assertEquals(4, data.length);
     }
 }

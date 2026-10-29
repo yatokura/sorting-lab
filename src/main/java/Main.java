@@ -11,7 +11,7 @@ public class Main {
         System.out.println(Arrays.toString(data));
 
         System.out.println("============================");
-        for (int i = data.length; i >= 0; i--) {
+        for (int i = data.length; i > 0; i--) {
             for (int j = 1; j < data.length; j++) {
                 if (data[j - 1] > data[j]) {
                     SortsUtils.swap(data, j - 1, j);
