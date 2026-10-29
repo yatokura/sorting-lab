@@ -1,4 +1,4 @@
-
+import java.util.Arrays;
 
 public class GnomeSort implements Sorter {
 
@@ -10,7 +10,9 @@ public class GnomeSort implements Sorter {
                 i++;
             } else {
                 SortsUtils.swap(array, i - 1, i);
-                i--;
+                if(i>0){
+                    i--;
+                }
             }
         }
     }
