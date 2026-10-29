@@ -4,15 +4,13 @@ public class BubbleSort implements Sorter {
 
     @Override
     public void sort(int[] array) {
-        for (int j = 0; j < array.length; j++) {
-            for (int i = 1; i < array.length; i++) {
-                if (j<i) {
-                    SortsUtils.swap(array,j,i);
+        for (int i = array.length; i >= 0; i--) {
+            for (int j = 1; j < array.length; j++) {
+                if (array[j - 1] > array[j]) {
+                    SortsUtils.swap(array, j - 1, j);
                 }
-                System.out.println(Arrays.toString(array));
             }
         }
-
     }
 
     @Override
