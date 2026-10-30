@@ -11,13 +11,19 @@ public class Main {
         System.out.println(Arrays.toString(data));
 
         System.out.println("============================");
-        for (int i = 1; i < data.length; i++) {
-            while (i<data.length) {
-                SortsUtils.swap(data, i - 1, i);
-                System.out.println(Arrays.toString(data));
-                i--;
+        int i = 1;
+        while (i < data.length) {
+            if (data[i - 1] < data[i]) {
+                i++;
+            } else {
+                int k = i;
+                while (k > 0 && data[k - 1] > data[k]) {
+                    SortsUtils.swap(data, k - 1, k);
+                    k--;
+                }
+                i++;
             }
-
+            System.out.println(Arrays.toString(data));
         }
         System.out.println("============================");
         System.out.println(Arrays.toString(expected));
