@@ -1,22 +1,19 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class QuickSort implements Sorter{
-     private int findPivot(int[] array) {
+public class QuickSort implements Sorter {
+    private int findPivot(int[] array) {
         int pivot;
         int middleIndex = (array.length - 1) / 2;
         int lastIndex = array.length - 1;
-        System.out.println(array[middleIndex]);
+
         if ((array[0] > array[middleIndex] && array[0] < array[lastIndex]) ||
                 (array[0] < array[middleIndex] && array[0] > array[lastIndex])) {
-            System.out.println("first");
             pivot = 0;
         } else if ((array[lastIndex] > array[middleIndex] && array[lastIndex] < array[0]) ||
                 (array[lastIndex] < array[middleIndex] && array[lastIndex] > array[0])) {
-            System.out.println("last");
             pivot = lastIndex;
         } else {
-            System.out.println("middle");
             pivot = middleIndex;
         }
         return pivot;
@@ -52,13 +49,15 @@ public class QuickSort implements Sorter{
         for (int x : sortedLow) result.add(x);
         result.add(array[pivot]);
         for (int x : sortedHigh) result.add(x);
-
         return result.stream().mapToInt(Integer::intValue).toArray();
     }
 
     @Override
     public void sort(int[] array) {
-        array = quickSort(array);
+        int[] sorted = quickSort(array);
+        for (int i = 0; i < sorted.length; i++) {
+            array[i] = sorted[i];
+        }
     }
 
     @Override

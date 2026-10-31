@@ -13,7 +13,7 @@ public class SortingCorrectnessTest<sorters> {
     Sorter[] sorters = new Sorter[0];
 
     static Stream<Sorter> sorters() {
-        return Stream.of(new BubbleSort(), new GnomeSort(),new InsertionSort());
+        return Stream.of(new BubbleSort(), new GnomeSort(),new InsertionSort(),new QuickSort());
     }
 
     @ParameterizedTest
