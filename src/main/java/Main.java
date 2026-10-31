@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Main {
 
-    public int findPivot(int[] array) {
+    public static int findPivot(int[] array) {
         int pivot;
         int middleIndex = (array.length - 1) / 2;
         int lastIndex = array.length - 1;
@@ -23,6 +23,41 @@ public class Main {
             System.out.println("middle");
             pivot = middleIndex;
         }
+        return pivot;
+    }
+
+    public static int[] quickSort(int[] array) {
+        if (array.length <= 1) {
+            return array;
+        }
+
+        List<Integer> low = new ArrayList<>();
+        List<Integer> high = new ArrayList<>();
+
+        int pivot = findPivot(array);
+        SortsUtils.swap(array, pivot, array.length - 1);
+        pivot = array.length - 1;
+
+        for (int i = 0; i < array.length - 1; i++) {
+            if (array[i] <= array[pivot]) {
+                low.add(array[i]);
+            } else {
+                high.add(array[i]);
+            }
+        }
+
+        List<Integer> result = new ArrayList<>();
+
+        int[] lowArr = low.stream().mapToInt(Integer::intValue).toArray();
+        int[] highArr = high.stream().mapToInt(Integer::intValue).toArray();
+        int[] sortedLow = quickSort(lowArr);
+        int[] sortedHigh = quickSort(highArr);
+
+        for (int x : sortedLow) result.add(x);
+        result.add(array[pivot]);
+        for (int x : sortedHigh) result.add(x);
+
+        return result.stream().mapToInt(Integer::intValue).toArray();
     }
 
     static void main(String[] args) {
@@ -34,30 +69,7 @@ public class Main {
 
         System.out.println("============================");
 
-
-
-        int j;
-        List<Integer> sortingList = new ArrayList<>();
-        do {
-            sortingList.clear();
-            List<Integer> left = new ArrayList<>();
-            List<Integer> right = new ArrayList<>();
-            for (int i = 0; i < data.length; i++) {
-                if (data[i] == data[pivot]) {
-                    continue;
-                }
-                if (data[i] > data[pivot]) {
-                    right.add(data[i]);
-                } else {
-                    left.add(data[i]);
-                }
-            }
-            left.add(pivot);
-            sortingList.addAll(left);
-            sortingList.addAll(right);
-            j = left.size();
-            System.out.println(sortingList);
-        } while (j > 1);
+        System.out.println(Arrays.toString(quickSort(data)));
 
         System.out.println("============================");
         System.out.println(Arrays.toString(expected));
