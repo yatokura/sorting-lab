@@ -6,26 +6,6 @@ import java.util.Random;
 
 public class Main {
 
-    public static int findPivot(int[] array) {
-        int pivot;
-        int middleIndex = (array.length - 1) / 2;
-        int lastIndex = array.length - 1;
-        System.out.println(array[middleIndex]);
-        if ((array[0] > array[middleIndex] && array[0] < array[lastIndex]) ||
-                (array[0] < array[middleIndex] && array[0] > array[lastIndex])) {
-            System.out.println("first");
-            pivot = 0;
-        } else if ((array[lastIndex] > array[middleIndex] && array[lastIndex] < array[0]) ||
-                (array[lastIndex] < array[middleIndex] && array[lastIndex] > array[0])) {
-            System.out.println("last");
-            pivot = lastIndex;
-        } else {
-            System.out.println("middle");
-            pivot = middleIndex;
-        }
-        return pivot;
-    }
-
     public static int[] quickSort(int[] array) {
         if (array.length <= 1) {
             return array;
@@ -34,7 +14,7 @@ public class Main {
         List<Integer> low = new ArrayList<>();
         List<Integer> high = new ArrayList<>();
 
-        int pivot = findPivot(array);
+        int pivot =0;
         SortsUtils.swap(array, pivot, array.length - 1);
         pivot = array.length - 1;
 
