@@ -49,6 +49,18 @@ public class Main {
 
         System.out.println("============================");
 
+        if (data.length <= 1) {
+            System.out.println("sakin kok da ya podrochil huek");
+        }
+
+        int middleIndex = data.length;
+
+        int[] left = new int[data.length/2];
+        int[] right = new int[data.length/2];
+        System.arraycopy(data,0,left,0,data.length/2);
+        System.arraycopy(data,5,right,0,data.length/2);
+        System.out.println(Arrays.toString(left));
+        System.out.println(Arrays.toString(right));
         System.out.println(Arrays.toString(quickSort(data)));
 
         System.out.println("============================");
