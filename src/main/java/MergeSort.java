@@ -21,21 +21,21 @@ public class MergeSort implements Sorter {
         int i = 0;
         int j = 0;
         while (i < left.length && j < right.length) {
-            if (left[i] <= right[j]) {
-                result.add(left[i]);
+            if (sortedLeft[i] <= sortedRight[j]) {
+                result.add(sortedLeft[i]);
                 i++;
             } else {
-                result.add(right[j]);
+                result.add(sortedRight[j]);
                 j++;
             }
         }
 
         while (i < left.length) {
-            result.add(left[i]);
+            result.add(sortedLeft[i]);
             i++;
         }
         while (j < right.length) {
-            result.add(right[j]);
+            result.add(sortedRight[j]);
             j++;
         }
         return result.stream().mapToInt(Integer::intValue).toArray();
