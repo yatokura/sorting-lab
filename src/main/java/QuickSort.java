@@ -1,55 +1,31 @@
-import java.util.ArrayList;
-import java.util.List;
-
 public class QuickSort implements Sorter {
-    private int findPivot(int[] array) {
-        int pivot;
-        int middleIndex = (array.length - 1) / 2;
-        int lastIndex = array.length - 1;
 
-        if ((array[0] > array[middleIndex] && array[0] < array[lastIndex]) ||
-                (array[0] < array[middleIndex] && array[0] > array[lastIndex])) {
-            pivot = 0;
-        } else if ((array[lastIndex] > array[middleIndex] && array[lastIndex] < array[0]) ||
-                (array[lastIndex] < array[middleIndex] && array[lastIndex] > array[0])) {
-            pivot = lastIndex;
-        } else {
-            pivot = middleIndex;
+    private void quickSort(int[] array, int low, int high) {
+        if (low < high) {
+            int pivotIndex = partition(array, low, high);
+            quickSort(array, low, pivotIndex - 1);
+            quickSort(array, pivotIndex + 1, high);
         }
-        return pivot;
     }
 
-    private int[] quickSort(int[] array) {
-        if (array.length <= 1) {
-            return array;
-        }
+    private int partition(int[] array, int low, int high) {
+        int pivot = array[high];
+        int i = (low - 1); 
 
-        List<Integer> low = new ArrayList<>();
-        List<Integer> high = new ArrayList<>();
-
-        int pivot = findPivot(array);
-        SortsUtils.swap(array, pivot, array.length - 1);
-        pivot = array.length - 1;
-
-        for (int i = 0; i < array.length - 1; i++) {
-            if (array[i] <= array[pivot]) {
-                low.add(array[i]);
-            } else {
-                high.add(array[i]);
+        for (int j = low; j < high; j++) {
+            if (array[j] <= pivot) {
+                i++;
+                int temp = array[i];
+                array[i] = array[j];
+                array[j] = temp;
             }
         }
 
-        List<Integer> result = new ArrayList<>();
+        int temp = array[i + 1];
+        array[i + 1] = array[high];
+        array[high] = temp;
 
-        int[] lowArr = low.stream().mapToInt(Integer::intValue).toArray();
-        int[] highArr = high.stream().mapToInt(Integer::intValue).toArray();
-        int[] sortedLow = quickSort(lowArr);
-        int[] sortedHigh = quickSort(highArr);
-
-        for (int x : sortedLow) result.add(x);
-        result.add(array[pivot]);
-        for (int x : sortedHigh) result.add(x);
-        return result.stream().mapToInt(Integer::intValue).toArray();
+        return i + 1;
     }
 
     @Override
@@ -57,10 +33,7 @@ public class QuickSort implements Sorter {
         if (array == null || array.length <= 1) {
             return;
         }
-        int[] sorted = quickSort(array);
-        for (int i = 0; i < sorted.length; i++) {
-            array[i] = sorted[i];
-        }
+        quickSort(array, 0, array.length - 1);
     }
 
     @Override
