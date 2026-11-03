@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -24,8 +23,8 @@ public class SortingCorrectnessTest<sorters> {
     @MethodSource("sorters")
     void sortsRandomArrays(Sorter sorter) {
         Random rnd = new Random(42);
-        for (int size = 0; size <= 10; size++) {
-            int[] data = rnd.ints(size, 0, 10).toArray();
+        for (int size = 0; size <= 100; size++) {
+            int[] data = rnd.ints(size, 0, 100).toArray();
             int[] expected = data.clone();
             Arrays.sort(expected);
 
@@ -34,12 +33,25 @@ public class SortingCorrectnessTest<sorters> {
         }
     }
 
-    @Test
-    void checkIfSortDontLosingAnything() {
+    @ParameterizedTest
+    @MethodSource("sorters")
+    void timeCounterForEverySort(Sorter sorter) {
+        Random rnd = new Random(44);
+        int[] data = rnd.ints(2_000, 0, 100).toArray();
+
+        long start = System.currentTimeMillis();
+        sorter.sort(data);
+        long end = System.currentTimeMillis();
+        System.out.println(sorter.name() + ":" + (end - start) + "ms");
+    }
+
+    @ParameterizedTest
+    @MethodSource("sorters")
+    void checkIfSortDontLosingAnything(Sorter sorter) {
         int[] data = {5, -2, 9, 3};
         long sumBefore = Arrays.stream(data).sum();
-        new BubbleSort().sort(data);
-        assertEquals(sumBefore, Arrays.stream(data).sum());   // ничего не потерялось
+        sorter.sort(data);
+        assertEquals(sumBefore, Arrays.stream(data).sum());
         assertEquals(4, data.length);
     }
 }
