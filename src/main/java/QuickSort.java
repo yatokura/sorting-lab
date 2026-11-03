@@ -40,4 +40,9 @@ public class QuickSort implements Sorter {
     public String name() {
         return "QuickSort";
     }
+
+    @Override
+    public String toString(){
+        return name();
+    }
 }

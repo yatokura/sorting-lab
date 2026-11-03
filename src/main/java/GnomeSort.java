@@ -22,4 +22,9 @@ public class GnomeSort implements Sorter {
     public String name() {
         return "GnomeSort";
     }
+
+    @Override
+    public String toString(){
+        return name();
+    }
 }

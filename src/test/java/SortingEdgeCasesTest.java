@@ -1,4 +1,3 @@
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -7,15 +6,13 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class SortingEdgeCasesTest {
-    Sorter[] sorters = new Sorter[0];
-
     static Stream<Sorter> sorters() {
         return Stream.of(new BubbleSort(), new GnomeSort(),new InsertionSort(),new QuickSort(),new MergeSort());
     }
 
     @ParameterizedTest
     @MethodSource("sorters")
-    void ifMassiveIsEmptyThenReturnEmptyExceptrion(Sorter sorter) {
+    void ifMassiveIsEmptyThenReturnEmptyException(Sorter sorter) {
         int[] data = {};
         sorter.sort(data);
         assertArrayEquals(new int[]{}, data);

@@ -56,4 +56,9 @@ public class MergeSort implements Sorter {
     public String name() {
         return "MergeSort";
     }
+
+    @Override
+    public String toString(){
+        return name();
+    }
 }

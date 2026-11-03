@@ -18,4 +18,9 @@ public class BubbleSort implements Sorter {
     public String name() {
         return "BubbleSort";
     }
+
+    @Override
+    public String toString(){
+        return name();
+    }
 }

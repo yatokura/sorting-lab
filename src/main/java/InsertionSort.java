@@ -24,4 +24,9 @@ public class InsertionSort implements Sorter{
     public String name() {
         return "InsertionSort";
     }
+
+    @Override
+    public String toString(){
+        return name();
+    }
 }
