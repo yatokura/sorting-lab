@@ -36,13 +36,27 @@ public class SortingCorrectnessTest<sorters> {
     @ParameterizedTest
     @MethodSource("sorters")
     void timeCounterForEverySort(Sorter sorter) {
-        Random rnd = new Random(44);
-        int[] data = rnd.ints(2_000, 0, 100).toArray();
+        System.out.println("=================");
+        long[] avg = new long[5];
+        int i = 0;
+        for (int seed = 20; seed < 25; seed++) {
+            Random rnd = new Random(seed);
+            int[] data = rnd.ints(2_000, 0, 100).toArray();
 
-        long start = System.currentTimeMillis();
-        sorter.sort(data);
-        long end = System.currentTimeMillis();
-        System.out.println(sorter.name() + ":" + (end - start) + "ms");
+            System.out.println(Arrays.toString(data));
+            long start = System.currentTimeMillis();
+            sorter.sort(data);
+            long end = System.currentTimeMillis();
+            System.out.println((end - start) + "ms");
+            avg[i] = end - start;
+            i++;
+        }
+        long average = 0;
+        for (long element : avg) {
+            average += element;
+        }
+        average /= avg.length;
+        System.out.println("sorter:" + sorter.name() + "; average speed:" + average + "ms");
     }
 
     @ParameterizedTest

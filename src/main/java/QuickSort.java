@@ -54,6 +54,9 @@ public class QuickSort implements Sorter {
 
     @Override
     public void sort(int[] array) {
+        if (array == null || array.length <= 1) {
+            return;
+        }
         int[] sorted = quickSort(array);
         for (int i = 0; i < sorted.length; i++) {
             array[i] = sorted[i];

@@ -43,6 +43,9 @@ public class MergeSort implements Sorter {
 
     @Override
     public void sort(int[] array) {
+        if (array == null || array.length <= 1) {
+            return;
+        }
         int[] sorted = mergeSort(array);
         for (int i = 0; i < sorted.length; i++) {
             array[i] = sorted[i];

@@ -2,6 +2,9 @@ public class InsertionSort implements Sorter{
 
     @Override
     public void sort(int[] array) {
+        if (array == null || array.length <= 1) {
+            return;
+        }
         int i = 1;
         while (i < array.length) {
             if (array[i - 1] < array[i]) {
