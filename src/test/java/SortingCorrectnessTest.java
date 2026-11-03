@@ -8,9 +8,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class SortingCorrectnessTest<sorters> {
-    Sorter[] sorters = new Sorter[0];
-
+public class SortingCorrectnessTest {
     static Stream<Sorter> sorters() {
         return Stream.of(new BubbleSort(),
                 new GnomeSort(),
@@ -31,32 +29,6 @@ public class SortingCorrectnessTest<sorters> {
             sorter.sort(data);
             assertArrayEquals(expected, data);
         }
-    }
-
-    @ParameterizedTest
-    @MethodSource("sorters")
-    void timeCounterForEverySort(Sorter sorter) {
-        System.out.println("=================");
-        long[] avg = new long[5];
-        int i = 0;
-        for (int seed = 20; seed < 25; seed++) {
-            Random rnd = new Random(seed);
-            int[] data = rnd.ints(2_000, 0, 100).toArray();
-
-            System.out.println(Arrays.toString(data));
-            long start = System.currentTimeMillis();
-            sorter.sort(data);
-            long end = System.currentTimeMillis();
-            System.out.println((end - start) + "ms");
-            avg[i] = end - start;
-            i++;
-        }
-        long average = 0;
-        for (long element : avg) {
-            average += element;
-        }
-        average /= avg.length;
-        System.out.println("sorter:" + sorter.name() + "; average speed:" + average + "ms");
     }
 
     @ParameterizedTest
