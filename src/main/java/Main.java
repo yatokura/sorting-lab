@@ -2,7 +2,15 @@ import java.util.Random;
 
 
 public class Main {
-    static void main(String[] args) {
+    static void draw(int[] state) {
+        System.out.print("\033[H\033[2J");
+        for (int value : state) {
+            System.out.println("#".repeat(value));
+        }
+        System.out.flush();
+    }
+
+    static void timeChecker() {
         Sorter[] sorters = {new BubbleSort(),
                 new GnomeSort(),
                 new InsertionSort(),
@@ -31,5 +39,11 @@ public class Main {
             average /= avg.length;
             System.out.println("sorter:" + sorter.name() + "; average speed:" + average + "ms");
         }
+    }
+
+    static void main(String[] args) {
+        Random rnd = new Random(44);
+        int[] data = rnd.ints(10, 1, 10).toArray();
+        draw(data);
     }
 }
