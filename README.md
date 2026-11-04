@@ -42,6 +42,7 @@ Merge Sort is an efficient, comparison-based sorting algorithm that operates on 
 - JDK 17 or newer (Gradle itself is **not** needed — the wrapper downloads it automatically)
 
 ## Run the program
+Runs the benchmark and prints the average execution time for each sorting algorithm.
 ```bash
 ./gradlew run
 ```
