@@ -45,5 +45,6 @@ public class Main {
         Random rnd = new Random(44);
         int[] data = rnd.ints(10, 1, 10).toArray();
         draw(data);
+        timeChecker();
     }
 }
