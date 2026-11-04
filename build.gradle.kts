@@ -2,7 +2,7 @@ plugins {
     id("java")
 }
 
-group = "org.example"
+group = "https://yatokura.github.io/hruk-personal-site-/"
 version = "1.0-SNAPSHOT"
 
 repositories {
