@@ -40,3 +40,9 @@ Merge Sort is an efficient, comparison-based sorting algorithm that operates on 
 run
 `./gradlew test`
 in your terminal
+
+# License
+
+This project is licensed under the **GPL-3.0** license. You are free to use, modify, and distribute this code, but any derivative work **must also be open source** under the same license.
+
+See the full terms in the [LICENSE](LICENSE) file or at [gnu.org/licenses/gpl-3.0](https://www.gnu.org/licenses/gpl-3.0.html).
