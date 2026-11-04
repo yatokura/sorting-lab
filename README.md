@@ -36,10 +36,20 @@ Merge Sort is an efficient, comparison-based sorting algorithm that operates on 
 | Quicksort      | O(n log n) | O(n log n)   | O(n²)      | O(log n)         |
 | Merge Sort     | O(n log n) | O(n log n)   | O(n log n) | O(n)             |
 
-# How to run?
-run
-`./gradlew test`
-in your terminal
+# How to run
+
+## Requirements
+- JDK 17 or newer (Gradle itself is **not** needed — the wrapper downloads it automatically)
+
+## Run the program
+```bash
+./gradlew run
+```
+
+## Run the tests
+```bash
+./gradlew test
+```
 
 # License
 
