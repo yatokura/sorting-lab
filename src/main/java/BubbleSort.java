@@ -5,11 +5,16 @@ public class BubbleSort implements Sorter {
         if (array == null || array.length <= 1) {
             return;
         }
-        for (int i = array.length; i >= 0; i--) {
-            for (int j = 1; j < array.length; j++) {
-                if (array[j - 1] > array[j]) {
-                    SortsUtils.swap(array, j - 1, j);
+        for (int i = 0; i < array.length - 1; i++) {
+            boolean swapped = false;
+            for (int j = 0; j < array.length - 1 - i; j++) {
+                if (array[j] > array[j + 1]) {
+                    SortsUtils.swap(array, j, j + 1);
+                    swapped = true;
                 }
+            }
+            if (!swapped) {
+                break; 
             }
         }
     }
@@ -20,7 +25,7 @@ public class BubbleSort implements Sorter {
     }
 
     @Override
-    public String toString(){
+    public String toString() {
         return name();
     }
 }

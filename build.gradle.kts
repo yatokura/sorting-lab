@@ -1,8 +1,9 @@
 plugins {
     id("java")
+    id("application")
 }
 
-group = "https://yatokura.github.io/hruk-personal-site-/"
+group = "io.github.yatokura"
 version = "1.0-SNAPSHOT"
 
 repositories {
@@ -13,6 +14,10 @@ dependencies {
     testImplementation(platform("org.junit:junit-bom:6.0.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
     testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+application {
+    mainClass = "Main"
 }
 
 tasks.test {
